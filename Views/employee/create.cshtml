@@ -1,0 +1,83 @@
+﻿@model template.bl.models.employeevm;
+@{
+    ViewData["Title"] = "create";
+    Layout = "~/Views/layout/MainLayout.cshtml";
+}
+<a asp-action="Index" asp-controller="employee" class="btn btn-success"> back to data</a>
+<br />
+
+<h2>create</h2>
+
+
+<br />
+<form asp-controller="employee" asp-action="create" class="form-group">
+    <div asp-validation-summary="All"></div>
+
+    <label asp-for="name">  name</label>
+    <input type="text" class="form-control" asp-for="name">
+    <span asp-validation-for="name" class="text-danger"></span>
+    <br />
+
+    <label asp-for="salary"> salary</label>
+    <input type="text" class="form-control" asp-for="salary">
+    <span asp-validation-for="salary" class="text-danger"></span>
+
+    <br />
+
+    <label asp-for="hiredate"> hiredate</label>
+    <input type="text" class="form-control" asp-for="hiredate">
+    <span asp-validation-for="hiredate" class="text-danger"></span>
+
+    <br />
+
+    <label asp-for="hiredate"> hiredate</label>
+    <input type="date" class="form-control" asp-for="hiredate">
+    <span asp-validation-for="hiredate" class="text-danger"></span>
+
+    <br />
+
+    <label asp-for="notes"> notes</label>
+    <textarea asp-for="notes" class="form-control" rows="3"></textarea>
+    <span asp-validation-for="notes" class="text-danger"></span>
+
+    <br />
+
+    <label asp-for="email"> email</label>
+    <input type="text" class="form-control" asp-for="email">
+    <span asp-validation-for="email" class="text-danger"></span>
+
+    <br />
+
+    <div class="demo-checkbox">
+        <input type="checkbox" asp-for="isactive" checked="">
+        <label asp-for="isactive">IsActive</label>
+        <span asp-validation-for="isactive" class="text-danger"></span>
+    </div>
+
+    <br />
+
+    <label asp-for="address"> address</label>
+    <input type="text" class="form-control" asp-for="address">
+    <span asp-validation-for="address" class="text-danger"></span>
+
+    <br />
+
+    <select asp-for="departmentid" asp-items="(SelectList) ViewBag.departmentlist">
+        <option >Choose department</option>
+    </select>
+
+
+    <br />
+
+    <center>
+        <input type="submit" value="save" class="btn btn-primary" />
+        <input type="reset" value="reset" class="btn btn-danger" />
+    </center>
+
+</form>
+
+@section microsoftvali
+{
+    <script src="~/plugins/jquery-validation/jquery.validate.js"></script>
+    <script src="~/plugins/jquery-validation-unobtrusive/jquery.validate.unobtrusive.min.js"></script>
+}
