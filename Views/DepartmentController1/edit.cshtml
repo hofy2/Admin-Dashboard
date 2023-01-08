@@ -1,0 +1,44 @@
+﻿@model template.bl.models.departmentvm;
+@{
+    ViewData["Title"] = "edit";
+    Layout = "~/Views/layout/MainLayout.cshtml";
+}
+<a asp-action="Index" asp-controller="DepartmentController1" class="btn btn-success"> back to data</a>
+<br />
+
+<h2>efit</h2>
+
+
+<br />
+<form asp-controller="DepartmentController1" asp-action="edit" class="form-group">
+    <div asp-validation-summary="All"></div>
+    <input type="hidden" asp-for="id" />
+    <label asp-for="departmentname">  departmentname</label>
+    <input type="text" class="form-control" asp-for="departmentname">
+    <span asp-validation-for="departmentname" class="text-danger"></span>
+    <br />
+
+    <label asp-for="departmentcode"> departmentcode</label>
+    <input type="text" class="form-control" asp-for="departmentcode">
+    <span asp-validation-for="departmentcode" class="text-danger"></span>
+
+    <br />
+
+    <label asp-for="departmentsize"> departmentsize</label>
+    <input type="text" class="form-control" asp-for="departmentsize">
+    <span asp-validation-for="departmentsize" class="text-danger"></span>
+
+    <br />
+
+    <center>
+        <input type="submit" value="edit" class="btn btn-primary" />
+        <input type="reset" value="reset" class="btn btn-danger" />
+    </center>
+
+</form>
+
+@section microsoftvali
+{
+    <script src="~/plugins/jquery-validation/jquery.validate.js"></script>
+    <script src="~/plugins/jquery-validation-unobtrusive/jquery.validate.unobtrusive.min.js"></script>
+}

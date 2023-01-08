@@ -1,0 +1,38 @@
+﻿
+@model template.bl.models.departmentvm;
+@{
+    ViewData["Title"] = "details";
+    Layout = "~/Views/layout/MainLayout.cshtml";
+}
+<a asp-action="Index" asp-controller="DepartmentController1" class="btn btn-success"> back to data</a>
+<br />
+
+<h2>details</h2>
+
+
+<br />
+<form class="form-group">
+
+    <input type="hidden" asp-for="id" />
+
+    <label asp-for="id">  id</label>
+    <input type="text" class="form-control" asp-for="id" disabled>
+
+    <label asp-for="departmentname">  departmentname</label>
+    <input type="text" class="form-control" asp-for="departmentname" disabled>
+
+    <br />
+
+    <label asp-for="departmentcode"> departmentcode</label>
+    <input type="text" class="form-control" asp-for="departmentcode" disabled>
+
+
+    <br />
+
+    <label asp-for="departmentsize"> departmentsize</label>
+    <input type="text" class="form-control" asp-for="departmentsize" disabled>
+
+
+
+</form>
+

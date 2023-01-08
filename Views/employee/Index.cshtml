@@ -1,0 +1,148 @@
+﻿
+@model IEnumerable<template.bl.models.employeevm>
+
+
+@{
+    ViewData["Title"] = @SharedLocalizer["employee"];
+
+}
+
+@section datatablestyle
+{
+    <link href="~/plugins/bootstrap-select/css/bootstrap-select.css" rel="stylesheet" />
+
+    <link href="~/plugins/jquery-datatable/skin/bootstrap/css/dataTables.bootstrap.css" rel="stylesheet" />
+
+}
+
+
+<div>
+    <a asp-action="create" asp-controller="employee" class="btn btn-info ">@SharedLocalizer["createnewclient"] </a>
+</div>
+
+<br />
+
+
+
+
+
+
+
+
+
+
+<div class="container-fluid">
+    <div class="row clearfix">
+        <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
+            <div class="card">
+                <div class="header">
+                    <h2>@SharedLocalizer["WelcomeToemployee"]</h2>
+                    <ul class="header-dropdown m-r--5">
+                        <li class="dropdown">
+                            <a href="javascript:void(0);" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">
+                                <i class="material-icons">more_vert</i>
+                            </a>
+                            <ul class="dropdown-menu pull-right">
+                                <li><a href="javascript:void(0);">Action</a></li>
+                                <li><a href="javascript:void(0);">Another action</a></li>
+                                <li><a href="javascript:void(0);">Something else here</a></li>
+                            </ul>
+                        </li>
+                    </ul>
+                </div>
+                <div class="body">
+                    <div class="table-responsive">
+                        <table class="table table-bordered table-striped table-hover js-basic-example dataTable">
+                            <thead>
+                                <tr>
+                                    <th>@SharedLocalizer["id"]</th>
+                                    <th>@SharedLocalizer["names"]</th>
+                                    <th>@SharedLocalizer["email"]</th>
+                                    <th>@SharedLocalizer["departmentname"]</th>
+                                    <th>@SharedLocalizer["district"]</th>
+                                    <th>@SharedLocalizer["photo"]</th>
+                                    <th>@SharedLocalizer["cv"]</th>
+
+                                    <th>@SharedLocalizer["details"]</th>
+                                    <th>@SharedLocalizer["update"]</th>
+                                    <th>@SharedLocalizer["delete"]</th>
+
+                                </tr>
+                            </thead>
+                            <tbody>
+                                @foreach (var item in Model)
+                                {
+
+
+                                    <tr>
+                                        <td>@item.id</td>
+                                        <td>@item.name</td>
+                                        <td>@item.email</td>
+                                        <td>@item.department.departmentname</td>
+                                        <td>@item.district.districtname</td>
+                                        <td><img src="~/files/imgs/@item.imgurl" width="50" height="50" /></td>
+                                        <td><a href="~/files/cvs/@item.cvurl">download cv </a></td>
+
+                                        <td> <a asp-action="details" asp-controller="employee" asp-route-id="@item.id" class="btn btn-success"> details</a></td>
+                                        <td> <a asp-action="edit" asp-controller="employee" asp-route-id="@item.id" class="btn btn-info"> update</a></td>
+                                        <td> <a asp-action="delete" asp-controller="employee" asp-route-id="@item.id" class="btn btn-danger"> delete</a></td>
+                                    </tr>
+                                }
+                            </tbody>
+
+                        </table>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+@section datatablescript
+{
+    <script src="~/plugins/jquery-datatable/jquery.dataTables.js"></script>
+    <script src="~/plugins/jquery-datatable/skin/bootstrap/js/dataTables.bootstrap.js"></script>
+
+
+
+
+    <script src="~/plugins/jquery-datatable/extensions/export/dataTables.buttons.min.js"></script>
+    <script src="~/plugins/jquery-datatable/extensions/export/buttons.flash.min.js"></script>
+    <script src="~/plugins/jquery-datatable/extensions/export/jszip.min.js"></script>
+    <script src="~/plugins/jquery-datatable/extensions/export/pdfmake.min.js"></script>
+    <script src="~/plugins/jquery-datatable/extensions/export/vfs_fonts.js"></script>
+    <script src="~/plugins/jquery-datatable/extensions/export/buttons.html5.min.js"></script>
+    <script src="~/plugins/jquery-datatable/extensions/export/buttons.print.min.js"></script>
+
+
+    <script>
+        $(function () {
+            $('.js-basic-example').DataTable({
+                responsive: true,
+                paging: true,
+                pageLength: 5,
+                bSort: true,
+                bFilter: true,
+                //bLengthChange: false,
+                //bInfo: false,
+                lengthMenu: [[5, 10, 25, 50, -1], [5, 10, 25, 50, "All"]],
+
+            });
+
+            var table = $('.js-basic-example').DataTable();
+
+            new $.fn.dataTable.Buttons(table, {
+                buttons: [
+                    'copy', 'excel', 'pdf', 'csv', 'print'
+                ]
+            });
+
+            table.buttons().container()
+                .appendTo($('.col-sm-6:eq(0)', table.table().container()));
+
+
+        });
+    </script>
+}
+
